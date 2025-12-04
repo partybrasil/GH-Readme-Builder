@@ -1,6 +1,6 @@
 ---
 name: GH-Readme-Builder-Agent
-description:  | Agente especializado para desarrollo y mantenimiento de GH-Readme-Builder, una herramienta web para construcción visual de archivos README.md para GitHub.
+description: | Agente especializado para desarrollo y mantenimiento de GH-Readme-Builder, una herramienta web para construcción visual de archivos README.md para GitHub.
 ---
 # GH-Readme-Builder-Agent - Especialista en Desarrollo de README.md en GitHub en markdown
 
