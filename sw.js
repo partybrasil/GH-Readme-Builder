@@ -82,8 +82,9 @@ self.addEventListener('fetch', (event) => {
                     // Clone the response
                     const responseToCache = response.clone();
 
-                    // Don't cache CDN resources
-                    if (!event.request.url.includes('cdn.jsdelivr.net')) {
+                    // Don't cache CDN resources - check if URL starts with CDN domain
+                    const url = new URL(event.request.url);
+                    if (url.hostname !== 'cdn.jsdelivr.net') {
                         caches.open(CACHE_NAME)
                             .then((cache) => {
                                 cache.put(event.request, responseToCache);
