@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Constructor visual de README.md profesionales para GitHub con drag & drop">
+    <meta name="keywords" content="github, readme, markdown, editor, builder, drag-drop">
+    <meta name="author" content="partybrasil">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://partybrasil.github.io/GH-Readme-Builder/">
+    <meta property="og:title" content="GH-Readme-Builder - Constructor de README">
+    <meta property="og:description" content="Crea README profesionales con drag & drop visual">
+    <meta property="og:image" content="assets/images/og-image.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://partybrasil.github.io/GH-Readme-Builder/">
+    <meta property="twitter:title" content="GH-Readme-Builder">
+    <meta property="twitter:description" content="Constructor visual de README">
+    <meta property="twitter:image" content="assets/images/og-image.png">
+
+    <title>GH-Readme-Builder - Constructor de README para GitHub</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/images/icon-192.png">
+    <link rel="apple-touch-icon" href="assets/images/icon-192.png">
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#2196F3">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+
+<body data-theme="auto">
+
+    <!-- ============================================ -->
+    <!-- HEADER -->
+    <!-- ============================================ -->
+    <header class="app-header">
+        <div class="header-left">
+            <svg class="app-logo" width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M13 3L4 14h7l-1 7 9-11h-7l1-7z"/>
+            </svg>
+            <h1 class="app-title">GH-Readme-Builder</h1>
+        </div>
+
+        <div class="header-center">
+            <input type="search" id="global-search" class="search-input" placeholder="Buscar templates, widgets..."
+                aria-label="Buscar">
+        </div>
+
+        <div class="header-right">
+            <button id="new-btn" class="btn btn-primary" title="Nuevo README">
+                <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M12 5v14m-7-7h14"></path>
+                </svg>
+                <span>Nuevo</span>
+            </button>
+
+            <button id="export-btn" class="btn btn-secondary" title="Exportar">
+                <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                <span>Exportar</span>
+            </button>
+
+            <button id="theme-toggle" class="icon-btn" title="Cambiar tema" aria-label="Cambiar tema">
+                <svg class="icon icon-theme" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
+
+            <button id="settings-btn" class="icon-btn" title="Configuración" aria-label="Configuración">
+                <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path
+                        d="M12 1v6m0 6v6m5.2-13.2l-3.4 3.4m-3.4 3.4l-3.4 3.4m13.2.2h-6m-6 0H1m13.2-5.2l-3.4-3.4m-3.4-3.4l-3.4-3.4">
+                    </path>
+                </svg>
+            </button>
+
+            <button id="help-btn" class="icon-btn" title="Ayuda" aria-label="Ayuda">
+                <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- ============================================ -->
+    <!-- MAIN CONTENT -->
+    <!-- ============================================ -->
+    <main class="app-main">
+
+        <!-- SIDEBAR: Templates & Widgets Library -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h2>Biblioteca</h2>
+                <button id="sidebar-collapse" class="icon-btn" aria-label="Colapsar sidebar">
+                    <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M15 18l-6-6 6-6"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="sidebar-content">
+                <!-- SECTION: Templates -->
+                <div class="sidebar-section" id="templates-section">
+                    <button class="section-header" data-section="templates">
+                        <span class="section-icon">📋</span>
+                        <span class="section-name">Templates</span>
+                        <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor">
+                            <path d="M6 9l6 6 6-6"></path>
+                        </svg>
+                    </button>
+                    <div class="section-content" id="templates-content">
+                        <!-- Templates loaded dynamically -->
+                        <div class="templates-grid" id="templates-grid"></div>
+                    </div>
+                </div>
+
+                <!-- SECTION: Widgets -->
+                <div class="sidebar-section collapsed" id="widgets-section">
+                    <button class="section-header" data-section="widgets">
+                        <span class="section-icon">🎨</span>
+                        <span class="section-name">Widgets</span>
+                        <span class="section-count">80+</span>
+                        <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor">
+                            <path d="M6 9l6 6 6-6"></path>
+                        </svg>
+                    </button>
+                    <div class="section-content" id="widgets-content">
+                        <!-- Widget categories -->
+                        <div class="widgets-grid" id="widgets-grid"></div>
+                    </div>
+                </div>
+
+                <!-- SECTION: Sections -->
+                <div class="sidebar-section collapsed" id="sections-section">
+                    <button class="section-header" data-section="sections">
+                        <span class="section-icon">📝</span>
+                        <span class="section-name">Secciones</span>
+                        <span class="section-count">50+</span>
+                        <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor">
+                            <path d="M6 9l6 6 6-6"></path>
+                        </svg>
+                    </button>
+                    <div class="section-content" id="sections-content">
+                        <div class="sections-grid" id="sections-grid"></div>
+                    </div>
+                </div>
+
+                <!-- SECTION: Elements -->
+                <div class="sidebar-section collapsed" id="elements-section">
+                    <button class="section-header" data-section="elements">
+                        <span class="section-icon">✨</span>
+                        <span class="section-name">Elementos</span>
+                        <span class="section-count">100+</span>
+                        <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor">
+                            <path d="M6 9l6 6 6-6"></path>
+                        </svg>
+                    </button>
+                    <div class="section-content" id="elements-content">
+                        <div class="elements-grid" id="elements-grid"></div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- CENTER: Editor -->
+        <section class="editor-container">
+            <div class="editor-toolbar">
+                <div class="toolbar-group">
+                    <button class="toolbar-btn" id="undo-btn" title="Deshacer (Ctrl+Z)">
+                        <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M3 7v6h6"></path>
+                            <path d="M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13"></path>
+                        </svg>
+                    </button>
+                    <button class="toolbar-btn" id="redo-btn" title="Rehacer (Ctrl+Y)">
+                        <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M21 7v6h-6"></path>
+                            <path d="M3 17a9 9 0 0 1 9-9 9 9 0 0 1 6 2.3l3 2.7"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="toolbar-group">
+                    <button class="toolbar-btn" id="bold-btn" title="Negrita (Ctrl+B)">
+                        <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M6 4h8a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6zM6 12h9a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z"></path>
+                        </svg>
+                    </button>
+                    <button class="toolbar-btn" id="italic-btn" title="Cursiva (Ctrl+I)">
+                        <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <line x1="19" y1="4" x2="10" y2="4"></line>
+                            <line x1="14" y1="20" x2="5" y2="20"></line>
+                            <line x1="15" y1="4" x2="9" y2="20"></line>
+                        </svg>
+                    </button>
+                    <button class="toolbar-btn" id="code-btn" title="Código (Ctrl+`)">
+                        <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <polyline points="16 18 22 12 16 6"></polyline>
+                            <polyline points="8 6 2 12 8 18"></polyline>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="toolbar-group">
+                    <button class="toolbar-btn" id="link-btn" title="Enlace (Ctrl+K)">
+                        <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                        </svg>
+                    </button>
+                    <button class="toolbar-btn" id="image-btn" title="Imagen (Ctrl+Shift+I)">
+                        <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                            <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                            <polyline points="21 15 16 10 5 21"></polyline>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="toolbar-group">
+                    <select id="heading-select" class="toolbar-select" title="Encabezado">
+                        <option value="">Texto</option>
+                        <option value="h1">Título 1</option>
+                        <option value="h2">Título 2</option>
+                        <option value="h3">Título 3</option>
+                        <option value="h4">Título 4</option>
+                        <option value="h5">Título 5</option>
+                        <option value="h6">Título 6</option>
+                    </select>
+                </div>
+
+                <div class="toolbar-group toolbar-right">
+                    <div class="editor-mode-toggle">
+                        <button class="mode-btn active" data-mode="edit" title="Modo Edición">
+                            <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor">
+                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                            </svg>
+                        </button>
+                        <button class="mode-btn" data-mode="split" title="Modo Dividido">
+                            <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="12" y1="3" x2="12" y2="21"></line>
+                            </svg>
+                        </button>
+                        <button class="mode-btn" data-mode="preview" title="Modo Vista Previa">
+                            <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="editor-workspace">
+                <div class="editor-pane" id="editor-pane">
+                    <textarea id="markdown-editor" class="markdown-textarea" placeholder="# Título del Proyecto
+
+Descripción breve del proyecto...
+
+## Características
+
+- Característica 1
+- Característica 2
+- Característica 3
+
+## Instalación
+
+```bash
+npm install mi-proyecto
+```
+
+## Uso
+
+```javascript
+import miProyecto from 'mi-proyecto';
+```
+"></textarea>
+                </div>
+
+                <div class="preview-pane hidden" id="preview-pane">
+                    <div class="markdown-preview" id="markdown-preview"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- RIGHT PANEL: Configuration -->
+        <aside class="config-panel" id="config-panel">
+            <div class="panel-header">
+                <h2>Configuración</h2>
+                <button id="panel-collapse" class="icon-btn" aria-label="Colapsar panel">
+                    <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M9 18l6-6-6-6"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="panel-content">
+                <div class="config-section">
+                    <h3>Información del Proyecto</h3>
+                    <div class="form-group">
+                        <label for="project-name">Nombre del Proyecto</label>
+                        <input type="text" id="project-name" class="form-control" placeholder="mi-proyecto">
+                    </div>
+                    <div class="form-group">
+                        <label for="project-description">Descripción</label>
+                        <textarea id="project-description" class="form-control" rows="3"
+                            placeholder="Breve descripción..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="author-name">Autor</label>
+                        <input type="text" id="author-name" class="form-control" placeholder="Tu Nombre">
+                    </div>
+                </div>
+
+                <div class="config-section">
+                    <h3>GitHub Stats</h3>
+                    <div class="form-group">
+                        <label for="github-username">Usuario GitHub</label>
+                        <input type="text" id="github-username" class="form-control" placeholder="username">
+                    </div>
+                    <div class="form-group">
+                        <label for="github-repo">Repositorio</label>
+                        <input type="text" id="github-repo" class="form-control" placeholder="repo-name">
+                    </div>
+                    <button class="btn btn-secondary btn-block" id="add-github-stats">
+                        <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M12 5v14m-7-7h14"></path>
+                        </svg>
+                        Añadir Stats
+                    </button>
+                </div>
+
+                <div class="config-section">
+                    <h3>Opciones de Estilo</h3>
+                    <div class="form-group">
+                        <label for="readme-theme">Tema</label>
+                        <select id="readme-theme" class="form-control">
+                            <option value="default">Default</option>
+                            <option value="dark">Dark</option>
+                            <option value="radical">Radical</option>
+                            <option value="merko">Merko</option>
+                            <option value="gruvbox">Gruvbox</option>
+                            <option value="tokyonight">Tokyo Night</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="show-icons" checked>
+                            <span>Mostrar iconos</span>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="center-align">
+                            <span>Centrar contenido</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="config-section">
+                    <h3>Acciones Rápidas</h3>
+                    <button class="btn btn-secondary btn-block" id="import-btn">
+                        <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="17 8 12 3 7 8"></polyline>
+                            <line x1="12" y1="3" x2="12" y2="15"></line>
+                        </svg>
+                        Importar README
+                    </button>
+                    <button class="btn btn-secondary btn-block" id="clear-btn">
+                        <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <polyline points="3 6 5 6 21 6"></polyline>
+                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                            </path>
+                        </svg>
+                        Limpiar Todo
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+    </main>
+
+    <!-- ============================================ -->
+    <!-- MODALS -->
+    <!-- ============================================ -->
+
+    <!-- Export Modal -->
+    <div class="modal" id="export-modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Exportar README</h2>
+                <button class="modal-close" data-modal="export-modal">
+                    <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="export-options">
+                    <button class="export-option" data-format="markdown">
+                        <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                        </svg>
+                        <span class="option-label">Markdown (.md)</span>
+                    </button>
+                    <button class="export-option" data-format="html">
+                        <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <polyline points="16 18 22 12 16 6"></polyline>
+                            <polyline points="8 6 2 12 8 18"></polyline>
+                        </svg>
+                        <span class="option-label">HTML (.html)</span>
+                    </button>
+                    <button class="export-option" data-format="json">
+                        <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                        </svg>
+                        <span class="option-label">JSON (.json)</span>
+                    </button>
+                    <button class="export-option" data-format="copy">
+                        <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg>
+                        <span class="option-label">Copiar al portapapeles</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div class="modal" id="settings-modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Configuración</h2>
+                <button class="modal-close" data-modal="settings-modal">
+                    <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="settings-section">
+                    <h3>Editor</h3>
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="auto-save" checked>
+                            <span>Auto-guardar cada 30 segundos</span>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="live-preview" checked>
+                            <span>Vista previa en tiempo real</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Help Modal -->
+    <div class="modal" id="help-modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h2>Ayuda y Atajos de Teclado</h2>
+                <button class="modal-close" data-modal="help-modal">
+                    <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="help-content">
+                    <h3>Atajos de Teclado</h3>
+                    <table class="shortcuts-table">
+                        <tr>
+                            <td><kbd>Ctrl</kbd> + <kbd>B</kbd></td>
+                            <td>Negrita</td>
+                        </tr>
+                        <tr>
+                            <td><kbd>Ctrl</kbd> + <kbd>I</kbd></td>
+                            <td>Cursiva</td>
+                        </tr>
+                        <tr>
+                            <td><kbd>Ctrl</kbd> + <kbd>K</kbd></td>
+                            <td>Insertar enlace</td>
+                        </tr>
+                        <tr>
+                            <td><kbd>Ctrl</kbd> + <kbd>S</kbd></td>
+                            <td>Guardar</td>
+                        </tr>
+                        <tr>
+                            <td><kbd>Ctrl</kbd> + <kbd>Z</kbd></td>
+                            <td>Deshacer</td>
+                        </tr>
+                        <tr>
+                            <td><kbd>Ctrl</kbd> + <kbd>Y</kbd></td>
+                            <td>Rehacer</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications Container -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/marked@11.1.1/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.6/dist/purify.min.js"></script>
+    <script src="js/utils/storage.js"></script>
+    <script src="js/utils/toast.js"></script>
+    <script src="js/utils/modal.js"></script>
+    <script src="js/core/editor.js"></script>
+    <script src="js/core/preview.js"></script>
+    <script src="js/core/toolbar.js"></script>
+    <script src="js/widgets/widgets.js"></script>
+    <script src="js/core/templates.js"></script>
+    <script src="js/core/export.js"></script>
+    <script src="js/core/import.js"></script>
+    <script src="js/app.js"></script>
+
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(registration => console.log('SW registered:', registration))
+                    .catch(err => console.log('SW registration failed:', err));
+            });
+        }
+    </script>
+</body>
+
+</html>

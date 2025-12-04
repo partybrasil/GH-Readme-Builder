@@ -1,0 +1,169 @@
+/* =========================================
+   CSS CUSTOM PROPERTIES (Variables)
+   ========================================= */
+
+:root {
+    /* ===== COLORS - LIGHT MODE (Default) ===== */
+    --color-primary: #2196F3;
+    --color-primary-hover: #1976D2;
+    --color-primary-active: #1565C0;
+
+    --color-secondary: #4CAF50;
+    --color-secondary-hover: #43A047;
+
+    --color-accent: #FF9800;
+
+    --color-background: #FAFAFA;
+    --color-surface: #FFFFFF;
+    --color-surface-elevated: #FFFFFF;
+
+    --color-text-primary: #212121;
+    --color-text-secondary: #666666;
+    --color-text-tertiary: #9E9E9E;
+
+    --color-border: #E0E0E0;
+    --color-border-light: #F5F5F5;
+
+    --color-success: #10B981;
+    --color-error: #EF4444;
+    --color-warning: #F59E0B;
+    --color-info: #3B82F6;
+
+    /* ===== TYPOGRAPHY ===== */
+    --font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    --font-family-mono: 'Fira Code', 'Courier New', Consolas, Monaco, monospace;
+
+    --font-size-xs: 11px;
+    --font-size-sm: 12px;
+    --font-size-base: 14px;
+    --font-size-md: 16px;
+    --font-size-lg: 18px;
+    --font-size-xl: 20px;
+    --font-size-2xl: 24px;
+    --font-size-3xl: 30px;
+
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+
+    --line-height-tight: 1.2;
+    --line-height-normal: 1.5;
+    --line-height-loose: 1.75;
+
+    /* ===== SPACING ===== */
+    --space-0: 0;
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 20px;
+    --space-6: 24px;
+    --space-8: 32px;
+    --space-10: 40px;
+    --space-12: 48px;
+    --space-16: 64px;
+
+    /* ===== BORDER RADIUS ===== */
+    --radius-sm: 4px;
+    --radius-base: 6px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+    --radius-full: 9999px;
+
+    /* ===== SHADOWS ===== */
+    --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.12), 0 4px 6px -2px rgba(0, 0, 0, 0.08);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 10px 10px -5px rgba(0, 0, 0, 0.08);
+
+    /* ===== TRANSITIONS ===== */
+    --transition-fast: 150ms ease;
+    --transition-base: 250ms ease;
+    --transition-slow: 350ms ease;
+
+    /* ===== Z-INDEX ===== */
+    --z-dropdown: 1000;
+    --z-sticky: 1020;
+    --z-fixed: 1030;
+    --z-modal-backdrop: 1040;
+    --z-modal: 1050;
+    --z-popover: 1060;
+    --z-tooltip: 1070;
+
+    /* ===== LAYOUT ===== */
+    --header-height: 60px;
+    --sidebar-width: 280px;
+    --panel-width: 320px;
+    --toolbar-height: 48px;
+}
+
+/* ===== DARK MODE ===== */
+[data-theme="dark"] {
+    --color-primary: #2196F3;
+    --color-primary-hover: #42A5F5;
+    --color-primary-active: #1E88E5;
+
+    --color-secondary: #4CAF50;
+    --color-secondary-hover: #66BB6A;
+
+    --color-accent: #FF9800;
+
+    --color-background: #121212;
+    --color-surface: #1E1E1E;
+    --color-surface-elevated: #2D2D2D;
+
+    --color-text-primary: #E0E0E0;
+    --color-text-secondary: #A0A0A0;
+    --color-text-tertiary: #707070;
+
+    --color-border: #333333;
+    --color-border-light: #2A2A2A;
+
+    --color-success: #10B981;
+    --color-error: #F87171;
+    --color-warning: #FBBF24;
+    --color-info: #60A5FA;
+
+    --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.6), 0 4px 6px -2px rgba(0, 0, 0, 0.5);
+}
+
+/* ===== AUTO THEME (System Preference) ===== */
+@media (prefers-color-scheme: dark) {
+    [data-theme="auto"] {
+        --color-primary: #2196F3;
+        --color-primary-hover: #42A5F5;
+        --color-primary-active: #1E88E5;
+
+        --color-secondary: #4CAF50;
+        --color-secondary-hover: #66BB6A;
+
+        --color-accent: #FF9800;
+
+        --color-background: #121212;
+        --color-surface: #1E1E1E;
+        --color-surface-elevated: #2D2D2D;
+
+        --color-text-primary: #E0E0E0;
+        --color-text-secondary: #A0A0A0;
+        --color-text-tertiary: #707070;
+
+        --color-border: #333333;
+        --color-border-light: #2A2A2A;
+
+        --color-success: #10B981;
+        --color-error: #F87171;
+        --color-warning: #FBBF24;
+        --color-info: #60A5FA;
+
+        --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.3);
+        --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.3);
+        --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.4);
+        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.6), 0 4px 6px -2px rgba(0, 0, 0, 0.5);
+    }
+}
