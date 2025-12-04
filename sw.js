@@ -5,27 +5,27 @@
 
 const CACHE_NAME = 'gh-readme-builder-v1';
 const urlsToCache = [
-    '/',
-    '/index.html',
-    '/css/reset.css',
-    '/css/variables.css',
-    '/css/main.css',
-    '/css/components.css',
-    '/css/layout.css',
-    '/css/themes.css',
-    '/css/responsive.css',
-    '/js/app.js',
-    '/js/utils/storage.js',
-    '/js/utils/toast.js',
-    '/js/utils/modal.js',
-    '/js/core/editor.js',
-    '/js/core/preview.js',
-    '/js/core/toolbar.js',
-    '/js/core/export.js',
-    '/js/core/import.js',
-    '/js/core/templates.js',
-    '/js/widgets/widgets.js',
-    '/manifest.json'
+    './',
+    './index.html',
+    './css/reset.css',
+    './css/variables.css',
+    './css/main.css',
+    './css/components.css',
+    './css/layout.css',
+    './css/themes.css',
+    './css/responsive.css',
+    './js/app.js',
+    './js/utils/storage.js',
+    './js/utils/toast.js',
+    './js/utils/modal.js',
+    './js/core/editor.js',
+    './js/core/preview.js',
+    './js/core/toolbar.js',
+    './js/core/export.js',
+    './js/core/import.js',
+    './js/core/templates.js',
+    './js/widgets/widgets.js',
+    './manifest.json'
 ];
 
 // Install event - cache resources

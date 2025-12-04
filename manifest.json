@@ -2,7 +2,7 @@
   "name": "GH-Readme-Builder",
   "short_name": "README Builder",
   "description": "Constructor visual de README.md profesionales para GitHub",
-  "start_url": "/",
+  "start_url": "./",
   "display": "standalone",
   "background_color": "#FAFAFA",
   "theme_color": "#2196F3",
