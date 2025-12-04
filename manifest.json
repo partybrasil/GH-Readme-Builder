@@ -1,0 +1,39 @@
+{
+  "name": "GH-Readme-Builder",
+  "short_name": "README Builder",
+  "description": "Constructor visual de README.md profesionales para GitHub",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FAFAFA",
+  "theme_color": "#2196F3",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "assets/images/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/images/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["productivity", "development", "utilities"],
+  "shortcuts": [
+    {
+      "name": "Nuevo README",
+      "short_name": "Nuevo",
+      "description": "Crear un nuevo README",
+      "url": "/?action=new",
+      "icons": [
+        {
+          "src": "assets/images/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ]
+}

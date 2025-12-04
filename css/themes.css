@@ -1,0 +1,40 @@
+/* =========================================
+   THEMES
+   ========================================= */
+
+/* Theme transitions for smooth switching */
+body,
+.app-header,
+.sidebar,
+.editor-container,
+.config-panel,
+.modal-content,
+.card,
+.btn-secondary,
+.form-control,
+.toolbar-btn,
+.section-header {
+    transition: background-color var(--transition-base), 
+                color var(--transition-base), 
+                border-color var(--transition-base);
+}
+
+/* Dark mode specific adjustments */
+[data-theme="dark"] .markdown-textarea {
+    caret-color: var(--color-primary);
+}
+
+[data-theme="dark"] .markdown-preview code {
+    background-color: var(--color-surface-elevated);
+}
+
+/* Auto theme detection */
+@media (prefers-color-scheme: dark) {
+    [data-theme="auto"] .markdown-textarea {
+        caret-color: var(--color-primary);
+    }
+
+    [data-theme="auto"] .markdown-preview code {
+        background-color: var(--color-surface-elevated);
+    }
+}

@@ -1,0 +1,64 @@
+{
+  "sections": [
+    {
+      "id": "installation",
+      "name": "Instalación",
+      "icon": "📦",
+      "content": "## Instalación\n\n```bash\nnpm install project-name\n```"
+    },
+    {
+      "id": "usage",
+      "name": "Uso",
+      "icon": "🚀",
+      "content": "## Uso\n\n```javascript\nconst project = require('project-name');\n```"
+    },
+    {
+      "id": "features",
+      "name": "Características",
+      "icon": "✨",
+      "content": "## Características\n\n- Característica 1\n- Característica 2\n- Característica 3"
+    },
+    {
+      "id": "contributing",
+      "name": "Contribuir",
+      "icon": "🤝",
+      "content": "## Contribuir\n\nLas contribuciones son bienvenidas! Por favor lee nuestra [Guía de Contribución](CONTRIBUTING.md)"
+    },
+    {
+      "id": "license",
+      "name": "Licencia",
+      "icon": "📄",
+      "content": "## Licencia\n\nMIT © [Tu Nombre](https://github.com/username)"
+    },
+    {
+      "id": "about",
+      "name": "Acerca de",
+      "icon": "ℹ️",
+      "content": "## Acerca del Proyecto\n\nDescripción detallada del proyecto..."
+    },
+    {
+      "id": "tech-stack",
+      "name": "Tech Stack",
+      "icon": "🛠️",
+      "content": "## Tech Stack\n\n**Client:** React, Redux, TailwindCSS\n\n**Server:** Node, Express"
+    },
+    {
+      "id": "roadmap",
+      "name": "Roadmap",
+      "icon": "🗺️",
+      "content": "## Roadmap\n\n- [x] Característica completada\n- [ ] Característica pendiente\n- [ ] Otra característica"
+    },
+    {
+      "id": "faq",
+      "name": "FAQ",
+      "icon": "❓",
+      "content": "## FAQ\n\n#### Pregunta 1?\n\nRespuesta 1\n\n#### Pregunta 2?\n\nRespuesta 2"
+    },
+    {
+      "id": "support",
+      "name": "Soporte",
+      "icon": "💬",
+      "content": "## Soporte\n\nPara soporte, envía un email a support@example.com o únete a nuestro canal de Slack."
+    }
+  ]
+}
