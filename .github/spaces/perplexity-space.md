@@ -96,6 +96,16 @@ Asistente especializado en investigación y resolución de problemas para **GH-R
 - DOM diffing algorithms
 - React reconciliation patterns
 
+**Ejemplo: Preview no actualiza**:
+
+```javascript
+let renderTimeout;
+input.addEventListener('input', () => {
+  clearTimeout(renderTimeout);
+  renderTimeout = setTimeout(updatePreview, 300);
+});
+```
+
 ### Widgets no cargan
 **Investigar:**
 - CORS proxy solutions
@@ -171,3 +181,22 @@ Asistente especializado en investigación y resolución de problemas para **GH-R
 🔍 Happy researching!
 
 ---
+
+# Comandos útiles
+npm run dev
+npm test
+npm run lint:fix
+npm run deploy
+
+**E2E (Playwright):**
+
+```javascript
+test('export file', async ({ page }) => {
+  await page.fill('#editor', '# Test');
+  const [download] = await Promise.all([
+    page.waitForEvent('download'),
+    page.click('button:has-text("Export")')
+  ]);
+  expect(download.suggestedFilename()).toBe('README.md');
+});
+```

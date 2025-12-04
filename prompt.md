@@ -504,6 +504,7 @@ drop: {
 
 ### Frontend Libraries
 
+```json
 {
   "marked": "^12.0.0",
   "dompurify": "^3.0.0",
@@ -515,9 +516,11 @@ drop: {
   "tippy.js": "^6.3.7",
   "notyf": "^3.10.0"
 }
+```
 
 ### Development Tools
 
+```json
 {
   "vite": "^5.0.0",
   "eslint": "^8.55.0",
@@ -527,29 +530,25 @@ drop: {
   "lighthouse": "^11.4.0",
   "workbox-cli": "^7.0.0"
 }
+```
 
 ---
 
-## 🤝 Contributing
+## 🧪 Development
 
-**Cómo Contribuir:**
+```bash
+# Install dependencies
+npm install
 
-1. Fork el repositorio
-2. Crea branch feature
-3. Commit cambios
-4. Push a branch
-5. Abre Pull Request
+# Start dev server
+npm run dev
 
-**Guidelines:**
-- Seguir guía de estilo del código
-- Escribir tests para nuevas features
-- Actualizar documentación
-- Mantener commits atómicos
+# Build for production
+npm run build
 
----
+# Run tests
+npm test
 
-## 📄 Licencia
-
-MIT License - Ver archivo LICENSE para detalles completos.
-
----
+# Linting
+npm run lint:fix
+```

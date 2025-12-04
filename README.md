@@ -6,7 +6,7 @@
 
 Una aplicación web 100% client-side para crear archivos README.md profesionales mediante interfaz visual drag & drop, editor WYSIWYG de markdown, y catálogo de 300+ elementos predefinidos.
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md) [![Made with ❤️](https://img.shields.io/badge/Made%20with-%E2%9D%A4%EF%B8%8F-red.svg)](https://github.com/yourusername/GH-Readme-Builder)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md) [![Made with ❤️](https://img.shields.io/badge/Made%20with-%E2%9D%A4%EF%B8%8F-red.svg)](https://github.com/yourusername/GH-Readme-Builder)
 
 [Demo](https://yourusername.github.io/GH-Readme-Builder) • [Documentation](docs/) • [Templates](templates/) • [Report Bug](issues) • [Request Feature](issues)
 
@@ -87,22 +87,20 @@ Una aplicación web 100% client-side para crear archivos README.md profesionales
 
 ### Opción 3: Ejecutar Localmente
 
+```bash
 # Clonar repositorio
-
 git clone https://github.com/yourusername/GH-Readme-Builder.git
 cd GH-Readme-Builder
 
 # Instalar dependencias
-
 npm install
 
 # Iniciar dev server
-
 npm run dev
 
 # Abrir en navegador
-
 # http://localhost:5173
+```
 
 ---
 
@@ -194,25 +192,22 @@ GH-Readme-Builder/
 
 ## 🧪 Development
 
+```bash
 # Install dependencies
-
 npm install
 
 # Start dev server
-
 npm run dev
 
 # Build for production
-
 npm run build
 
 # Run tests
-
 npm test
 
 # Linting
-
 npm run lint:fix
+```
 
 ---
 
@@ -246,7 +241,7 @@ Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md)
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details.
 
 ---
 

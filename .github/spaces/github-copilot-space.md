@@ -29,6 +29,8 @@ UI (3 paneles) → Core (editor, widgets, templates) → Services (storage, API,
 ### 1. Desarrollo Features
 
 **Widgets Dinámicos:**
+
+```javascript
 class WidgetFactory {
   createWidget(type, config) {
     // Validar config
@@ -36,15 +38,19 @@ class WidgetFactory {
     // Retornar markdown
   }
 }
+```
 
 **Secciones Template:**
+
+```json
 {
-  id: 'unique-id',
-  name: 'Section Name',
-  category: 'headers|about|usage',
-  markdown: `# Title\n\nContent`,
-  placeholders: ['{{PROJECT_NAME}}']
+  "id": "unique-id",
+  "name": "Section Name",
+  "category": "headers|about|usage",
+  "markdown": "# Title\n\nContent",
+  "placeholders": ["{{PROJECT_NAME}}"]
 }
+```
 
 ### 2. Debugging
 
@@ -74,6 +80,8 @@ test('parse markdown', () => {
 });
 
 **E2E (Playwright):**
+
+```javascript
 test('export file', async ({ page }) => {
   await page.fill('#editor', '# Test');
   const [download] = await Promise.all([
@@ -82,6 +90,7 @@ test('export file', async ({ page }) => {
   ]);
   expect(download.suggestedFilename()).toBe('README.md');
 });
+```
 
 ## Code Patterns
 
@@ -113,11 +122,12 @@ async function loadData() {
 
 ## Comandos
 
+```bash
 npm run dev          # Dev server
 npm test             # All tests
 npm run lint:fix     # Auto-fix
-npm run lighthouse   # Performance audit
 npm run deploy       # GitHub Pages
+```
 
 ## Checklist PR
 
