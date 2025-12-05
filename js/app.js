@@ -25,8 +25,6 @@
 
     // Initialize Application
     function initApp() {
-        console.log('🚀 GH-Readme-Builder initialized');
-        
         // Load saved state
         loadState();
         
