@@ -183,7 +183,7 @@
                     id: 'spotify-playing',
                     name: 'Spotify Now',
                     icon: '🎵',
-                    template: () => `<img src="https://spotify-github-profile.vercel.app/api/view?uid=YOUR_SPOTIFY_ID&cover_image=true&theme=default&show_offline=false&background_color=121212&interchange=false" alt="Spotify Now Playing" />`
+                    template: () => `<!-- Requires https://github.com/kittinan/spotify-github-profile setup and your Spotify user ID -->\n<img src="https://spotify-github-profile.vercel.app/api/view?uid=YOUR_SPOTIFY_ID&cover_image=true&theme=default&show_offline=false&background_color=121212&interchange=false" alt="Spotify Now Playing" />`
                 },
                 {
                     id: 'github-metrics',
