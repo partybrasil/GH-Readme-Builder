@@ -85,7 +85,7 @@
                 },
                 {
                     id: 'typing-multiline',
-                    name: 'Typing Multi',
+                    name: 'Typing Multiline',
                     icon: '💬',
                     template: () => `![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&pause=1000&color=2196F3&center=true&vCenter=true&width=600&lines=Welcome+to+my+GitHub+profile!;I+love+coding+and+building+things;Let's+create+something+amazing+together!)`
                 },
