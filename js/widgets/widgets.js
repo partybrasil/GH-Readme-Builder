@@ -358,7 +358,7 @@
                 { id: 'code-bash', name: 'Bash', icon: '⌨️', template: () => '\n```bash\n# Comando bash\necho "Hello World"\n```\n' },
                 { id: 'code-python', name: 'Python', icon: '🐍', template: () => '\n```python\n# Código Python\nprint("Hello World")\n```\n' },
                 { id: 'divider', name: 'Divisor', icon: '➖', template: () => '\n---\n' },
-                { id: 'divider-stars', name: 'Divisor *', icon: '⭐', template: () => '\n***\n' },
+                { id: 'divider-stars', name: 'Divisor ***', icon: '⭐', template: () => '\n***\n' },
                 { id: 'checklist', name: 'Checklist', icon: '✅', template: () => '\n- [ ] Tarea 1\n- [ ] Tarea 2\n- [x] Tarea completada\n' },
                 { id: 'list-ordered', name: 'Lista Num.', icon: '🔢', template: () => '\n1. Primer elemento\n2. Segundo elemento\n3. Tercer elemento\n' },
                 { id: 'list-unordered', name: 'Lista', icon: '📝', template: () => '\n- Elemento 1\n- Elemento 2\n  - Sub-elemento 2.1\n  - Sub-elemento 2.2\n- Elemento 3\n' },
