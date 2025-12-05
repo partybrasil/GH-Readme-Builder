@@ -369,7 +369,7 @@
                 { id: 'image', name: 'Imagen', icon: '🖼️', template: () => '\n![Alt text](https://via.placeholder.com/468x60?text=Your+Image+Here)\n' },
                 { id: 'image-sized', name: 'Img Tamaño', icon: '📐', template: () => '\n<img src="https://via.placeholder.com/150" alt="Image" width="150" height="150">\n' },
                 { id: 'link', name: 'Enlace', icon: '🔗', template: () => '[Texto del enlace](https://example.com)' },
-                { id: 'link-image', name: 'Img con Link', icon: '🔗', template: () => '[![Alt text](https://via.placeholder.com/150)](https://example.com)' },
+                { id: 'link-image', name: 'Imagen con Enlace', icon: '🔗', template: () => '[![Alt text](https://via.placeholder.com/150)](https://example.com)' },
                 { id: 'emoji', name: 'Emojis', icon: '😊', template: () => '😀 😃 😄 😁 😆 😅 🤣 😂 🙂 🙃 😉 😊 😇' },
                 { id: 'kbd', name: 'Keyboard', icon: '⌨️', template: () => 'Presiona <kbd>Ctrl</kbd> + <kbd>C</kbd> para copiar' },
                 { id: 'footnote', name: 'Nota al pie', icon: '📌', template: () => '\nTexto con nota[^1]\n\n[^1]: Esta es la nota al pie\n' },
