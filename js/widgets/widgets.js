@@ -354,7 +354,7 @@
                 { id: 'table-aligned', name: 'Tabla Alineada', icon: '📋', template: () => '\n| Left | Center | Right |\n| :--- | :---: | ---: |\n| Left aligned | Centered | Right aligned |\n' },
                 { id: 'quote', name: 'Cita', icon: '💬', template: () => '\n> Esta es una cita\n' },
                 { id: 'quote-multiline', name: 'Cita Multi', icon: '📝', template: () => '\n> Primera línea de la cita\n>\n> Segunda línea de la cita\n> con múltiples líneas\n' },
-                { id: 'code-block', name: 'Código', icon: '💻', template: () => '\n```javascript\n// Tu código aquí\n```\n' },
+                { id: 'code-block', name: 'Código JS', icon: '💻', template: () => '\n```javascript\n// Tu código aquí\n```\n' },
                 { id: 'code-bash', name: 'Bash', icon: '⌨️', template: () => '\n```bash\n# Comando bash\necho "Hello World"\n```\n' },
                 { id: 'code-python', name: 'Python', icon: '🐍', template: () => '\n```python\n# Código Python\nprint("Hello World")\n```\n' },
                 { id: 'divider', name: 'Divisor', icon: '➖', template: () => '\n---\n' },
