@@ -136,7 +136,7 @@
 }
 
 .section-content {
-    max-height: 500px;
+    max-height: none;
     overflow-y: auto;
     padding: var(--space-3);
     background-color: var(--color-surface);

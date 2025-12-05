@@ -6,6 +6,16 @@
 (function () {
     'use strict';
 
+    // Constants for DOM selectors
+    const SELECTORS = {
+        WIDGETS_SECTION_COUNT: '#widgets-section .section-count',
+        SECTIONS_SECTION_COUNT: '#sections-section .section-count',
+        ELEMENTS_SECTION_COUNT: '#elements-section .section-count',
+        SECTIONS_GRID: '#sections-grid',
+        ELEMENTS_GRID: '#elements-grid',
+        GRID_ITEM: '.grid-item'
+    };
+
     const widgetCategories = {
         'github-stats': {
             name: 'GitHub Stats',
@@ -208,6 +218,8 @@
             this.renderWidgets();
             this.renderSections();
             this.renderElements();
+            // Update counts after rendering is complete
+            requestAnimationFrame(() => this.updateCounts());
         },
 
         // Render widgets in sidebar
@@ -406,6 +418,54 @@
 
                 container.appendChild(elementEl);
             });
+        },
+
+        // Get total widget count
+        getWidgetCount() {
+            let count = 0;
+            Object.values(widgetCategories).forEach(category => {
+                count += category.items.length;
+            });
+            return count;
+        },
+
+        // Get sections count
+        getSectionsCount() {
+            const container = document.querySelector(SELECTORS.SECTIONS_GRID);
+            if (!container) return 0;
+            return container.querySelectorAll(SELECTORS.GRID_ITEM).length;
+        },
+
+        // Get elements count
+        getElementsCount() {
+            const container = document.querySelector(SELECTORS.ELEMENTS_GRID);
+            if (!container) return 0;
+            return container.querySelectorAll(SELECTORS.GRID_ITEM).length;
+        },
+
+        // Update section counts in sidebar
+        updateCounts() {
+            const widgetCount = this.getWidgetCount();
+            const sectionsCount = this.getSectionsCount();
+            const elementsCount = this.getElementsCount();
+
+            // Update widgets count
+            const widgetsCountEl = document.querySelector(SELECTORS.WIDGETS_SECTION_COUNT);
+            if (widgetsCountEl) {
+                widgetsCountEl.textContent = widgetCount;
+            }
+
+            // Update sections count
+            const sectionsCountEl = document.querySelector(SELECTORS.SECTIONS_SECTION_COUNT);
+            if (sectionsCountEl) {
+                sectionsCountEl.textContent = sectionsCount;
+            }
+
+            // Update elements count
+            const elementsCountEl = document.querySelector(SELECTORS.ELEMENTS_SECTION_COUNT);
+            if (elementsCountEl) {
+                elementsCountEl.textContent = elementsCount;
+            }
         }
     };
 
