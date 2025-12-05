@@ -11,8 +11,8 @@
         WIDGETS_SECTION_COUNT: '#widgets-section .section-count',
         SECTIONS_SECTION_COUNT: '#sections-section .section-count',
         ELEMENTS_SECTION_COUNT: '#elements-section .section-count',
-        SECTIONS_GRID: 'sections-grid',
-        ELEMENTS_GRID: 'elements-grid',
+        SECTIONS_GRID: '#sections-grid',
+        ELEMENTS_GRID: '#elements-grid',
         GRID_ITEM: '.grid-item'
     };
 
