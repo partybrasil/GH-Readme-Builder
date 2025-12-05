@@ -135,7 +135,7 @@
                     id: 'coding-time',
                     name: 'Coding Time',
                     icon: '⏱️',
-                    template: (username) => `[![WakaTime Stats](https://github-readme-stats.vercel.app/api/wakatime?username=${username}&theme=radical&layout=compact)](https://wakatime.com/@${username})`
+                    template: () => `[![WakaTime Stats](https://github-readme-stats.vercel.app/api/wakatime?username=YOUR_WAKATIME_USERNAME&theme=radical&layout=compact)](https://wakatime.com/@YOUR_WAKATIME_USERNAME)`
                 },
                 {
                     id: 'animated-banner',
@@ -159,7 +159,7 @@
                     id: 'github-skyline',
                     name: 'Skyline 3D',
                     icon: '🏙️',
-                    template: (username) => `<img src="https://github.com/${username}/${username}/blob/main/profile-3d-contrib/profile-night-rainbow.svg" alt="GitHub Skyline" />`
+                    template: (username) => `<!-- Requires https://github.com/yoshi389111/github-profile-3d-contrib setup -->\n<img src="https://github.com/${username}/${username}/blob/main/profile-3d-contrib/profile-night-rainbow.svg" alt="GitHub Skyline" />`
                 },
                 {
                     id: 'random-joke',
@@ -183,7 +183,7 @@
                     id: 'spotify-playing',
                     name: 'Spotify Now',
                     icon: '🎵',
-                    template: (username) => `<img src="https://spotify-github-profile.vercel.app/api/view?uid=${username}&cover_image=true&theme=default&show_offline=false&background_color=121212&interchange=false" alt="Spotify Now Playing" />`
+                    template: () => `<img src="https://spotify-github-profile.vercel.app/api/view?uid=YOUR_SPOTIFY_ID&cover_image=true&theme=default&show_offline=false&background_color=121212&interchange=false" alt="Spotify Now Playing" />`
                 },
                 {
                     id: 'github-metrics',

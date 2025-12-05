@@ -203,7 +203,6 @@
         if (addGithubStatsBtn) {
             addGithubStatsBtn.addEventListener('click', () => {
                 const username = AppState.projectInfo.githubUsername || 'username';
-                const repo = AppState.projectInfo.githubRepo || 'repo';
                 
                 if (!AppState.projectInfo.githubUsername) {
                     if (window.Toast) {
