@@ -227,7 +227,7 @@
 `;
 
                 if (window.Editor) {
-                    window.Editor.insertText('\n' + statsSection + '\n');
+                    window.Editor.insertText(statsSection);
                     if (window.Toast) {
                         window.Toast.show('GitHub Stats añadidas correctamente', 'success');
                     }
