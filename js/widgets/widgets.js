@@ -348,7 +348,7 @@
 
             const elements = [
                 { id: 'badge', name: 'Badge', icon: '🏷️', template: () => '![Badge](https://img.shields.io/badge/Label-Value-blue)' },
-                { id: 'badge-style', name: 'Badge Style', icon: '🎨', template: () => '![Badge](https://img.shields.io/badge/Style-For--The--Badge-informational?style=for-the-badge)' },
+                { id: 'badge-style', name: 'Badge For-The-Badge', icon: '🎨', template: () => '![Badge](https://img.shields.io/badge/Style-For--The--Badge-informational?style=for-the-badge)' },
                 { id: 'badge-flat', name: 'Badge Flat', icon: '📛', template: () => '![Badge](https://img.shields.io/badge/Flat-Square-success?style=flat-square)' },
                 { id: 'table', name: 'Tabla', icon: '📊', template: () => '\n| Column 1 | Column 2 | Column 3 |\n| -------- | -------- | -------- |\n| Cell 1   | Cell 2   | Cell 3   |\n' },
                 { id: 'table-aligned', name: 'Tabla Alineada', icon: '📋', template: () => '\n| Left | Center | Right |\n| :--- | :---: | ---: |\n| Left aligned | Centered | Right aligned |\n' },
