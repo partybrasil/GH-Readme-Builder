@@ -197,6 +197,47 @@
                 saveState();
             });
         }
+
+        // Add GitHub Stats button handler
+        const addGithubStatsBtn = document.getElementById('add-github-stats');
+        if (addGithubStatsBtn) {
+            addGithubStatsBtn.addEventListener('click', () => {
+                if (!AppState.projectInfo.githubUsername) {
+                    if (window.Toast) {
+                        window.Toast.show('Por favor, ingresa tu usuario de GitHub primero', 'warning');
+                    }
+                    return;
+                }
+
+                const username = AppState.projectInfo.githubUsername;
+
+                // Build a comprehensive GitHub stats section
+                const statsSection = `
+## 📊 GitHub Stats
+
+<div align="center">
+
+![GitHub Stats](https://github-readme-stats.vercel.app/api?username=${username}&show_icons=true&theme=radical&include_all_commits=true&count_private=true&hide_border=true)
+
+![GitHub Streak](https://github-readme-streak-stats.herokuapp.com/?user=${username}&theme=radical&hide_border=true)
+
+![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=${username}&layout=compact&theme=radical&hide_border=true)
+
+</div>
+`;
+
+                if (window.Editor) {
+                    window.Editor.insertText(statsSection);
+                    if (window.Toast) {
+                        window.Toast.show('GitHub Stats añadidas correctamente', 'success');
+                    }
+                } else {
+                    if (window.Toast) {
+                        window.Toast.show('Error al añadir stats', 'error');
+                    }
+                }
+            });
+        }
     }
 
     // Initialize toolbar
