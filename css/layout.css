@@ -143,6 +143,9 @@
     border: 1px solid var(--color-border);
     border-top: none;
     border-radius: 0 0 var(--radius-md) var(--radius-md);
+    /* Firefox scrollbar */
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-border) var(--color-surface);
 }
 
 /* Custom Scrollbar Styles */
@@ -163,12 +166,6 @@
 
 .section-content::-webkit-scrollbar-thumb:hover {
     background: var(--color-text-tertiary);
-}
-
-/* Firefox scrollbar */
-.section-content {
-    scrollbar-width: thin;
-    scrollbar-color: var(--color-border) var(--color-surface);
 }
 
 .sidebar-section.collapsed .section-content {

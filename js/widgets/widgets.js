@@ -81,7 +81,7 @@
                     id: 'typing-text',
                     name: 'Typing Text',
                     icon: '⌨️',
-                    template: () => `![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=1000&color=2196F3&center=true&vCenter=true&width=435&lines=Full+Stack+Developer;Open+Source+Enthusiast)`
+                    template: () => `![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=2196F3&center=true&vCenter=true&width=435&lines=Full+Stack+Developer;Open+Source+Enthusiast)`
                 },
                 {
                     id: 'typing-multiline',
@@ -135,6 +135,7 @@
                     id: 'coding-time',
                     name: 'Coding Time',
                     icon: '⏱️',
+                    // Requires a separate WakaTime account. Replace YOUR_WAKATIME_USERNAME with your actual WakaTime username.
                     template: () => `[![WakaTime Stats](https://github-readme-stats.vercel.app/api/wakatime?username=YOUR_WAKATIME_USERNAME&theme=radical&layout=compact)](https://wakatime.com/@YOUR_WAKATIME_USERNAME)`
                 },
                 {
@@ -367,7 +368,7 @@
                 { id: 'center', name: 'Centrar', icon: '↔️', template: () => '\n<div align="center">\n\nContenido centrado\n\n</div>\n' },
                 { id: 'right-align', name: 'Alinear Dcha', icon: '➡️', template: () => '\n<div align="right">\n\nContenido alineado a la derecha\n\n</div>\n' },
                 { id: 'image', name: 'Imagen', icon: '🖼️', template: () => '\n![Alt text](https://via.placeholder.com/468x60?text=Your+Image+Here)\n' },
-                { id: 'image-sized', name: 'Img Tamaño', icon: '📐', template: () => '\n<img src="https://via.placeholder.com/150" alt="Image" width="150" height="150">\n' },
+                { id: 'image-sized', name: 'Imagen con Tamaño', icon: '📐', template: () => '\n<img src="https://via.placeholder.com/150" alt="Image" width="150" height="150">\n' },
                 { id: 'link', name: 'Enlace', icon: '🔗', template: () => '[Texto del enlace](https://example.com)' },
                 { id: 'link-image', name: 'Imagen con Enlace', icon: '🔗', template: () => '[![Alt text](https://via.placeholder.com/150)](https://example.com)' },
                 { id: 'emoji', name: 'Emojis', icon: '😊', template: () => '😀 😃 😄 😁 😆 😅 🤣 😂 🙂 🙃 😉 😊 😇' },

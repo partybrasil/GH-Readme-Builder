@@ -202,14 +202,14 @@
         const addGithubStatsBtn = document.getElementById('add-github-stats');
         if (addGithubStatsBtn) {
             addGithubStatsBtn.addEventListener('click', () => {
-                const username = AppState.projectInfo.githubUsername || 'username';
-                
                 if (!AppState.projectInfo.githubUsername) {
                     if (window.Toast) {
                         window.Toast.show('Por favor, ingresa tu usuario de GitHub primero', 'warning');
                     }
                     return;
                 }
+
+                const username = AppState.projectInfo.githubUsername;
 
                 // Build a comprehensive GitHub stats section
                 const statsSection = `
