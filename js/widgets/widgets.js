@@ -208,6 +208,8 @@
             this.renderWidgets();
             this.renderSections();
             this.renderElements();
+            // Update counts after a short delay to ensure DOM is fully updated
+            setTimeout(() => this.updateCounts(), 100);
         },
 
         // Render widgets in sidebar
@@ -406,6 +408,54 @@
 
                 container.appendChild(elementEl);
             });
+        },
+
+        // Get total widget count
+        getWidgetCount() {
+            let count = 0;
+            Object.values(widgetCategories).forEach(category => {
+                count += category.items.length;
+            });
+            return count;
+        },
+
+        // Get sections count
+        getSectionsCount() {
+            const container = document.getElementById('sections-grid');
+            if (!container) return 0;
+            return container.querySelectorAll('.grid-item').length;
+        },
+
+        // Get elements count
+        getElementsCount() {
+            const container = document.getElementById('elements-grid');
+            if (!container) return 0;
+            return container.querySelectorAll('.grid-item').length;
+        },
+
+        // Update section counts in sidebar
+        updateCounts() {
+            const widgetCount = this.getWidgetCount();
+            const sectionsCount = this.getSectionsCount();
+            const elementsCount = this.getElementsCount();
+
+            // Update widgets count
+            const widgetsCountEl = document.querySelector('#widgets-section .section-count');
+            if (widgetsCountEl) {
+                widgetsCountEl.textContent = widgetCount;
+            }
+
+            // Update sections count
+            const sectionsCountEl = document.querySelector('#sections-section .section-count');
+            if (sectionsCountEl) {
+                sectionsCountEl.textContent = sectionsCount;
+            }
+
+            // Update elements count
+            const elementsCountEl = document.querySelector('#elements-section .section-count');
+            if (elementsCountEl) {
+                elementsCountEl.textContent = elementsCount;
+            }
         }
     };
 
