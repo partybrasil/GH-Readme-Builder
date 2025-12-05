@@ -431,14 +431,14 @@
 
         // Get sections count
         getSectionsCount() {
-            const container = document.getElementById(SELECTORS.SECTIONS_GRID);
+            const container = document.querySelector(SELECTORS.SECTIONS_GRID);
             if (!container) return 0;
             return container.querySelectorAll(SELECTORS.GRID_ITEM).length;
         },
 
         // Get elements count
         getElementsCount() {
-            const container = document.getElementById(SELECTORS.ELEMENTS_GRID);
+            const container = document.querySelector(SELECTORS.ELEMENTS_GRID);
             if (!container) return 0;
             return container.querySelectorAll(SELECTORS.GRID_ITEM).length;
         },
