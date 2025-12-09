@@ -10,7 +10,7 @@
         // Initialize modal system
         init() {
             // Setup close buttons
-            document.querySelectorAll('.modal-close').forEach(btn => {
+            document.querySelectorAll('.modal-close, [data-modal]').forEach(btn => {
                 btn.addEventListener('click', () => {
                     const modalId = btn.getAttribute('data-modal');
                     if (modalId) {

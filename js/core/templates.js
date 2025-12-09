@@ -6,6 +6,9 @@
 (function () {
     'use strict';
 
+    const CUSTOM_TEMPLATES_KEY = 'gh-readme-builder-custom-templates';
+
+    // Built-in/pre-defined templates
     const templates = [
         {
             id: 'minimal',
@@ -272,6 +275,176 @@ API requests are limited to 1000 requests per hour per API key.`
         // Initialize templates
         init() {
             this.renderTemplates();
+            this.setupEventListeners();
+        },
+
+        // Setup event listeners
+        setupEventListeners() {
+            const saveTemplateBtn = document.getElementById('save-template-btn');
+            if (saveTemplateBtn) {
+                saveTemplateBtn.addEventListener('click', () => {
+                    this.showSaveTemplateDialog();
+                });
+            }
+
+            const saveTemplateForm = document.getElementById('save-template-form');
+            if (saveTemplateForm) {
+                saveTemplateForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    this.saveCustomTemplate();
+                });
+            }
+        },
+
+        // Show save template dialog
+        showSaveTemplateDialog() {
+            if (!window.Editor) return;
+
+            const content = window.Editor.getContent();
+            if (!content || content.trim() === '') {
+                if (window.Toast) {
+                    window.Toast.show('No hay contenido para guardar como template', 'warning');
+                }
+                return;
+            }
+
+            // Clear form
+            document.getElementById('template-name').value = '';
+            document.getElementById('template-description').value = '';
+            document.getElementById('template-icon').value = '📝';
+
+            if (window.Modal) {
+                window.Modal.show('save-template-modal');
+            }
+        },
+
+        // Save custom template
+        saveCustomTemplate() {
+            const name = document.getElementById('template-name').value.trim();
+            const description = document.getElementById('template-description').value.trim();
+            const icon = document.getElementById('template-icon').value.trim() || '📝';
+
+            if (!name) {
+                if (window.Toast) {
+                    window.Toast.show('Por favor ingresa un nombre para el template', 'warning');
+                }
+                return;
+            }
+
+            const content = window.Editor.getContent();
+            if (!content || content.trim() === '') {
+                if (window.Toast) {
+                    window.Toast.show('No hay contenido para guardar', 'warning');
+                }
+                return;
+            }
+
+            const template = {
+                id: 'custom-' + Date.now(),
+                name: name,
+                icon: icon,
+                description: description,
+                category: 'custom',
+                content: content,
+                createdAt: new Date().toISOString()
+            };
+
+            // Save to localStorage
+            const customTemplates = this.getCustomTemplates();
+            customTemplates.push(template);
+            this.saveCustomTemplates(customTemplates);
+
+            // Re-render templates
+            this.renderTemplates();
+
+            // Close modal
+            if (window.Modal) {
+                window.Modal.hide('save-template-modal');
+            }
+
+            if (window.Toast) {
+                window.Toast.show(`Template "${name}" guardado correctamente`, 'success');
+            }
+        },
+
+        // Get custom templates from localStorage
+        getCustomTemplates() {
+            try {
+                const data = localStorage.getItem(CUSTOM_TEMPLATES_KEY);
+                return data ? JSON.parse(data) : [];
+            } catch (error) {
+                console.error('Error loading custom templates:', error);
+                return [];
+            }
+        },
+
+        // Save custom templates to localStorage
+        saveCustomTemplates(templates) {
+            try {
+                localStorage.setItem(CUSTOM_TEMPLATES_KEY, JSON.stringify(templates));
+            } catch (error) {
+                console.error('Error saving custom templates:', error);
+            }
+        },
+
+        // Delete custom template
+        deleteCustomTemplate(templateId) {
+            const customTemplates = this.getCustomTemplates();
+            const filtered = customTemplates.filter(t => t.id !== templateId);
+            this.saveCustomTemplates(filtered);
+            this.renderTemplates();
+            
+            if (window.Toast) {
+                window.Toast.show('Template eliminado', 'success');
+            }
+        },
+
+        // Substitute variables in content
+        substituteVariables(content) {
+            if (!window.AppState || !window.AppState.projectInfo) return content;
+
+            const info = window.AppState.projectInfo;
+            
+            // Primary placeholders with curly braces - only substitute if value exists
+            const primarySubstitutions = {
+                '{{username}}': info.githubUsername,
+                '{{repo}}': info.githubRepo,
+                '{{project}}': info.name,
+                '{{project-name}}': info.name,
+                '{{description}}': info.description,
+                '{{author}}': info.author
+            };
+
+            // Fallback replacements for common placeholder text in templates
+            // Only applied if the primary value exists
+            const fallbackReplacements = {
+                'username': info.githubUsername,
+                'repo-name': info.githubRepo,
+                'project-name': info.name,
+                'Your Name': info.author,
+                'mi-proyecto': info.name,
+                'Tu Nombre': info.author
+            };
+
+            let result = content;
+            
+            // Apply primary substitutions
+            for (const [placeholder, value] of Object.entries(primarySubstitutions)) {
+                if (value && value.trim()) {
+                    const regex = new RegExp(placeholder.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g');
+                    result = result.replace(regex, value);
+                }
+            }
+            
+            // Apply fallback replacements
+            for (const [placeholder, value] of Object.entries(fallbackReplacements)) {
+                if (value && value.trim()) {
+                    const regex = new RegExp(placeholder.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g');
+                    result = result.replace(regex, value);
+                }
+            }
+
+            return result;
         },
 
         // Render templates in sidebar
@@ -281,20 +454,83 @@ API requests are limited to 1000 requests per hour per API key.`
 
             container.innerHTML = '';
 
+            // Render pre-defined templates section
+            const predefinedSection = document.createElement('div');
+            predefinedSection.className = 'templates-subsection';
+            predefinedSection.innerHTML = '<h4 class="subsection-title">Pré-Definidos</h4>';
+            
+            const predefinedGrid = document.createElement('div');
+            predefinedGrid.className = 'templates-grid-items';
+
             templates.forEach(template => {
-                const templateEl = document.createElement('div');
-                templateEl.className = 'grid-item';
-                templateEl.innerHTML = `
-                    <span class="grid-item-icon">${template.icon}</span>
-                    <span class="grid-item-name">${template.name}</span>
-                `;
+                const templateEl = this.createTemplateElement(template, false);
+                predefinedGrid.appendChild(templateEl);
+            });
+
+            predefinedSection.appendChild(predefinedGrid);
+            container.appendChild(predefinedSection);
+
+            // Render custom templates section
+            const customTemplates = this.getCustomTemplates();
+            if (customTemplates.length > 0) {
+                const customSection = document.createElement('div');
+                customSection.className = 'templates-subsection';
+                customSection.innerHTML = '<h4 class="subsection-title">Salvados</h4>';
                 
-                templateEl.addEventListener('click', () => {
-                    this.applyTemplate(template);
+                const customGrid = document.createElement('div');
+                customGrid.className = 'templates-grid-items';
+
+                customTemplates.forEach(template => {
+                    const templateEl = this.createTemplateElement(template, true);
+                    customGrid.appendChild(templateEl);
                 });
 
-                container.appendChild(templateEl);
+                customSection.appendChild(customGrid);
+                container.appendChild(customSection);
+            }
+
+            // Add styles if not already added
+            this.addTemplateStyles();
+        },
+
+        // Create template element
+        createTemplateElement(template, isCustom) {
+            const templateEl = document.createElement('div');
+            templateEl.className = 'grid-item template-item';
+            
+            if (template.description) {
+                templateEl.title = template.description;
+            }
+
+            templateEl.innerHTML = `
+                <span class="grid-item-icon">${template.icon}</span>
+                <span class="grid-item-name">${template.name}</span>
+                ${isCustom ? '<button class="template-delete-btn" title="Eliminar">×</button>' : ''}
+            `;
+            
+            // Click handler for applying template
+            templateEl.addEventListener('click', (e) => {
+                // Don't apply if clicking delete button
+                if (e.target.classList.contains('template-delete-btn')) {
+                    return;
+                }
+                this.applyTemplate(template);
             });
+
+            // Delete button handler for custom templates
+            if (isCustom) {
+                const deleteBtn = templateEl.querySelector('.template-delete-btn');
+                if (deleteBtn) {
+                    deleteBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        if (confirm(`¿Eliminar el template "${template.name}"?`)) {
+                            this.deleteCustomTemplate(template.id);
+                        }
+                    });
+                }
+            }
+
+            return templateEl;
         },
 
         // Apply template
@@ -309,21 +545,85 @@ API requests are limited to 1000 requests per hour per API key.`
                 }
             }
 
-            window.Editor.setContent(template.content);
+            // Apply variable substitution
+            const content = this.substituteVariables(template.content);
+            window.Editor.setContent(content);
             
             if (window.Toast) {
                 window.Toast.show(`Plantilla "${template.name}" aplicada`, 'success');
             }
         },
 
+        // Add template-specific styles
+        addTemplateStyles() {
+            if (document.getElementById('template-subsection-styles')) return;
+
+            const style = document.createElement('style');
+            style.id = 'template-subsection-styles';
+            style.textContent = `
+                .templates-subsection {
+                    margin-bottom: var(--space-4);
+                }
+                .subsection-title {
+                    font-size: var(--font-size-sm);
+                    font-weight: var(--font-weight-semibold);
+                    color: var(--color-text-secondary);
+                    margin-bottom: var(--space-3);
+                    padding: var(--space-2) 0;
+                    border-bottom: 1px solid var(--color-border);
+                }
+                .templates-grid-items {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+                    gap: var(--space-2);
+                }
+                .template-item {
+                    position: relative;
+                }
+                .template-delete-btn {
+                    position: absolute;
+                    top: 2px;
+                    right: 2px;
+                    width: 20px;
+                    height: 20px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background-color: var(--color-error);
+                    color: white;
+                    border: none;
+                    border-radius: 50%;
+                    font-size: 16px;
+                    font-weight: bold;
+                    line-height: 1;
+                    cursor: pointer;
+                    opacity: 0;
+                    transition: opacity var(--transition-fast);
+                }
+                .template-item:hover .template-delete-btn {
+                    opacity: 1;
+                }
+                .template-delete-btn:hover {
+                    background-color: var(--color-error-hover, #d32f2f);
+                }
+            `;
+            document.head.appendChild(style);
+        },
+
         // Get template by ID
         getTemplate(templateId) {
-            return templates.find(t => t.id === templateId);
+            // Check built-in templates
+            let template = templates.find(t => t.id === templateId);
+            if (template) return template;
+
+            // Check custom templates
+            const customTemplates = this.getCustomTemplates();
+            return customTemplates.find(t => t.id === templateId);
         },
 
         // Get all templates
         getAllTemplates() {
-            return templates;
+            return [...templates, ...this.getCustomTemplates()];
         }
     };
 

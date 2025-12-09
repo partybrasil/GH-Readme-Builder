@@ -161,6 +161,7 @@
             projectName.addEventListener('input', (e) => {
                 AppState.projectInfo.name = e.target.value;
                 saveState();
+                updateVariablesInEditor();
             });
         }
 
@@ -169,6 +170,7 @@
             projectDesc.addEventListener('input', (e) => {
                 AppState.projectInfo.description = e.target.value;
                 saveState();
+                updateVariablesInEditor();
             });
         }
 
@@ -177,6 +179,7 @@
             authorName.addEventListener('input', (e) => {
                 AppState.projectInfo.author = e.target.value;
                 saveState();
+                updateVariablesInEditor();
             });
         }
 
@@ -185,6 +188,7 @@
             githubUsername.addEventListener('input', (e) => {
                 AppState.projectInfo.githubUsername = e.target.value;
                 saveState();
+                updateVariablesInEditor();
             });
         }
 
@@ -193,6 +197,7 @@
             githubRepo.addEventListener('input', (e) => {
                 AppState.projectInfo.githubRepo = e.target.value;
                 saveState();
+                updateVariablesInEditor();
             });
         }
 
@@ -334,6 +339,13 @@
                 setEditorMode(nextMode);
             }
         });
+    }
+
+    // Update variables in editor content
+    // Note: This intentionally does nothing to avoid interfering with user's manual edits.
+    // Variable substitution is applied when templates/widgets/sections are inserted.
+    function updateVariablesInEditor() {
+        // Intentionally empty - variables are substituted at insertion time only
     }
 
     // Setup event listeners
