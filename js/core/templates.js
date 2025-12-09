@@ -536,9 +536,17 @@ API requests are limited to 1000 requests per hour per API key.`
             if (isCustom) {
                 const deleteBtn = templateEl.querySelector('.template-delete-btn');
                 if (deleteBtn) {
-                    deleteBtn.addEventListener('click', (e) => {
+                    deleteBtn.addEventListener('click', async (e) => {
                         e.stopPropagation();
-                        if (confirm(`¿Eliminar el template "${template.name}"?`)) {
+                        if (window.Modal && window.Modal.confirm) {
+                            const confirmed = await window.Modal.confirm(
+                                `¿Eliminar el template "${template.name}"?`,
+                                'Eliminar Template'
+                            );
+                            if (confirmed) {
+                                this.deleteCustomTemplate(template.id);
+                            }
+                        } else if (confirm(`¿Eliminar el template "${template.name}"?`)) {
                             this.deleteCustomTemplate(template.id);
                         }
                     });
@@ -549,13 +557,23 @@ API requests are limited to 1000 requests per hour per API key.`
         },
 
         // Apply template
-        applyTemplate(template) {
+        async applyTemplate(template) {
             if (!window.Editor) return;
 
             // Ask for confirmation if editor has content
             const currentContent = window.Editor.getContent();
             if (currentContent && currentContent.trim() !== '') {
-                if (!confirm('¿Reemplazar el contenido actual con esta plantilla?')) {
+                let confirmed = false;
+                if (window.Modal && window.Modal.confirm) {
+                    confirmed = await window.Modal.confirm(
+                        '¿Reemplazar el contenido actual con esta plantilla?',
+                        'Aplicar Template'
+                    );
+                } else {
+                    confirmed = confirm('¿Reemplazar el contenido actual con esta plantilla?');
+                }
+                
+                if (!confirmed) {
                     return;
                 }
             }
