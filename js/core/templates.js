@@ -457,7 +457,7 @@ API requests are limited to 1000 requests per hour per API key.`
             // Render pre-defined templates section
             const predefinedSection = document.createElement('div');
             predefinedSection.className = 'templates-subsection';
-            predefinedSection.innerHTML = '<h4 class="subsection-title">Pré-Definidos</h4>';
+            predefinedSection.innerHTML = '<h4 class="subsection-title">Predefinidos</h4>';
             
             const predefinedGrid = document.createElement('div');
             predefinedGrid.className = 'templates-grid-items';
