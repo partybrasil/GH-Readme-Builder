@@ -10,7 +10,7 @@
         // Initialize modal system
         init() {
             // Setup close buttons
-            document.querySelectorAll('.modal-close').forEach(btn => {
+            document.querySelectorAll('.modal-close, button[data-modal], .btn[data-modal]').forEach(btn => {
                 btn.addEventListener('click', () => {
                     const modalId = btn.getAttribute('data-modal');
                     if (modalId) {
@@ -81,6 +81,57 @@
         hideAll() {
             document.querySelectorAll('.modal.active').forEach(modal => {
                 modal.classList.remove('active');
+            });
+        },
+
+        // Show confirmation dialog
+        confirm(message, title = 'Confirmar') {
+            return new Promise((resolve) => {
+                const modal = document.getElementById('confirm-modal');
+                const titleEl = document.getElementById('confirm-modal-title');
+                const messageEl = document.getElementById('confirm-modal-message');
+                const acceptBtn = document.getElementById('confirm-modal-accept');
+                
+                if (!modal || !titleEl || !messageEl || !acceptBtn) {
+                    // Fallback to native confirm if modal not found
+                    resolve(window.confirm(message));
+                    return;
+                }
+
+                // Set message and title
+                titleEl.textContent = title;
+                messageEl.textContent = message;
+
+                // Remove old event listeners by cloning
+                const newAcceptBtn = acceptBtn.cloneNode(true);
+                acceptBtn.parentNode.replaceChild(newAcceptBtn, acceptBtn);
+
+                // Add new event listeners
+                const handleAccept = () => {
+                    this.hide('confirm-modal');
+                    resolve(true);
+                };
+
+                const handleCancel = () => {
+                    this.hide('confirm-modal');
+                    resolve(false);
+                };
+
+                newAcceptBtn.addEventListener('click', handleAccept);
+
+                // Setup cancel buttons
+                const cancelBtns = modal.querySelectorAll('[data-modal="confirm-modal"]');
+                cancelBtns.forEach(btn => {
+                    const newBtn = btn.cloneNode(true);
+                    btn.parentNode.replaceChild(newBtn, btn);
+                    newBtn.addEventListener('click', handleCancel);
+                });
+
+                // Show modal
+                this.show('confirm-modal');
+
+                // Focus accept button
+                setTimeout(() => newAcceptBtn.focus(), 100);
             });
         }
     };

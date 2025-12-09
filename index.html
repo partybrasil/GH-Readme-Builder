@@ -392,6 +392,14 @@ import miProyecto from 'mi-proyecto';
 
                 <div class="config-section">
                     <h3>Acciones Rápidas</h3>
+                    <button class="btn btn-secondary btn-block" id="save-template-btn">
+                        <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                            <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                            <polyline points="7 3 7 8 15 8"></polyline>
+                        </svg>
+                        Guardar como Template
+                    </button>
                     <button class="btn btn-secondary btn-block" id="import-btn">
                         <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
@@ -542,6 +550,65 @@ import miProyecto from 'mi-proyecto';
                         </tr>
                     </table>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Save Template Modal -->
+    <div class="modal" id="save-template-modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Guardar como Template</h2>
+                <button class="modal-close" data-modal="save-template-modal">
+                    <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="save-template-form">
+                    <div class="form-group">
+                        <label for="template-name">Nombre del Template *</label>
+                        <input type="text" id="template-name" class="form-control" placeholder="Mi Template Personalizado" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="template-description">Descripción (opcional)</label>
+                        <textarea id="template-description" class="form-control" rows="3" placeholder="Descripción o nota sobre este template..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="template-icon">Icono</label>
+                        <input type="text" id="template-icon" class="form-control" placeholder="📝" maxlength="10">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-modal="save-template-modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Guardar Template</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div class="modal" id="confirm-modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content modal-small">
+            <div class="modal-header">
+                <h2 id="confirm-modal-title">Confirmar</h2>
+                <button class="modal-close" data-modal="confirm-modal">
+                    <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p id="confirm-modal-message"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-modal="confirm-modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="confirm-modal-accept">Aceptar</button>
             </div>
         </div>
     </div>

@@ -284,22 +284,46 @@
             }
         },
 
+        // Check if widget requires username
+        widgetRequiresUsername(widgetId) {
+            const requiresUsernamePatterns = [
+                'stats', 'streak', 'trophy', 'activity', 'snake', 
+                'views', 'contribution', 'metrics', 'skyline'
+            ];
+            return requiresUsernamePatterns.some(pattern => widgetId.includes(pattern));
+        },
+
         // Insert widget into editor
         insertWidget(widget) {
             if (!window.Editor) return;
 
-            let markdown = '';
-            const username = window.AppState?.projectInfo?.githubUsername || 'username';
+            const projectInfo = window.AppState?.projectInfo || {};
+            const username = projectInfo.githubUsername || '';
 
+            // Check if widget requires username and it's missing
+            const requiresUsername = this.widgetRequiresUsername(widget.id);
+
+            if (requiresUsername && !username) {
+                if (window.Toast) {
+                    window.Toast.show('⚠️ Por favor define tu usuario de GitHub en la configuración primero', 'warning');
+                }
+                // Still insert the widget but with placeholder
+            }
+
+            let markdown = '';
             if (widget.template) {
-                markdown = widget.template(username);
+                markdown = widget.template(username || 'username');
             }
 
             if (markdown) {
                 window.Editor.insertText('\n\n' + markdown + '\n\n');
                 
                 if (window.Toast) {
-                    window.Toast.show(`Widget "${widget.name}" añadido`, 'success');
+                    if (requiresUsername && username) {
+                        window.Toast.show(`Widget "${widget.name}" añadido con tus datos`, 'success');
+                    } else {
+                        window.Toast.show(`Widget "${widget.name}" añadido`, 'success');
+                    }
                 }
             }
         },
@@ -343,7 +367,12 @@
                 
                 sectionEl.addEventListener('click', () => {
                     if (window.Editor) {
-                        window.Editor.insertText('\n\n' + section.content + '\n\n');
+                        // Apply variable substitution if Templates module is available
+                        let content = section.content;
+                        if (window.Templates && window.Templates.substituteVariables) {
+                            content = window.Templates.substituteVariables(content);
+                        }
+                        window.Editor.insertText('\n\n' + content + '\n\n');
                         if (window.Toast) {
                             window.Toast.show(`Sección "${section.name}" añadida`, 'success');
                         }
