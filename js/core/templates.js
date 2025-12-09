@@ -502,11 +502,26 @@ API requests are limited to 1000 requests per hour per API key.`
                 templateEl.title = template.description;
             }
 
-            templateEl.innerHTML = `
-                <span class="grid-item-icon">${template.icon}</span>
-                <span class="grid-item-name">${template.name}</span>
-                ${isCustom ? '<button class="template-delete-btn" title="Eliminar">×</button>' : ''}
-            `;
+            // Create icon span
+            const iconSpan = document.createElement('span');
+            iconSpan.className = 'grid-item-icon';
+            iconSpan.textContent = template.icon;
+            templateEl.appendChild(iconSpan);
+
+            // Create name span
+            const nameSpan = document.createElement('span');
+            nameSpan.className = 'grid-item-name';
+            nameSpan.textContent = template.name;
+            templateEl.appendChild(nameSpan);
+
+            // Add delete button if custom
+            if (isCustom) {
+                const deleteBtn = document.createElement('button');
+                deleteBtn.className = 'template-delete-btn';
+                deleteBtn.title = 'Eliminar';
+                deleteBtn.textContent = '×';
+                templateEl.appendChild(deleteBtn);
+            }
             
             // Click handler for applying template
             templateEl.addEventListener('click', (e) => {
