@@ -299,7 +299,6 @@
 
             const projectInfo = window.AppState?.projectInfo || {};
             const username = projectInfo.githubUsername || '';
-            const repo = projectInfo.githubRepo || '';
 
             // Check if widget requires username and it's missing
             const requiresUsername = this.widgetRequiresUsername(widget.id);
