@@ -340,7 +340,7 @@ API requests are limited to 1000 requests per hour per API key.`
             }
 
             const template = {
-                id: 'custom-' + Date.now(),
+                id: 'custom-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9),
                 name: name,
                 icon: icon,
                 description: description,
