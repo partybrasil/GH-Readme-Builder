@@ -92,7 +92,7 @@
                 const messageEl = document.getElementById('confirm-modal-message');
                 const acceptBtn = document.getElementById('confirm-modal-accept');
                 
-                if (!modal || !messageEl || !acceptBtn) {
+                if (!modal || !titleEl || !messageEl || !acceptBtn) {
                     // Fallback to native confirm if modal not found
                     resolve(window.confirm(message));
                     return;
